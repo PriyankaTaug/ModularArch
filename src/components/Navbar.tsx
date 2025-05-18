@@ -1,15 +1,28 @@
-import { Link } from 'react-router-dom';
-import './Navbar.css';
+import React from 'react';
+import { NavLink } from 'react-router-dom';
 
-const Navbar = () => {
+interface NavbarProps {
+  modules: {
+    name: string;
+    routeProps: {
+      path: string;
+    };
+  }[];
+}
+
+const Navbar: React.FC<NavbarProps> = ({ modules }) => {
   return (
-    <nav className="navbar">
-      <h2>ERP POC</h2>
-      <ul>
-        <li><Link to="/dashboard">Dashboard</Link></li>
-        <li><Link to="/hr">HR</Link></li>
-        <li><Link to="/cms">CMS</Link></li>
-      </ul>
+    <nav style={{ padding: '1rem', borderBottom: '1px solid #ccc' }}>
+      {modules.map((module) => (
+        <NavLink
+          key={module.routeProps.path}
+          to={module.routeProps.path}
+          style={{ marginRight: '1rem', textDecoration: 'none', color: 'blue' }}
+          activeStyle={{ fontWeight: 'bold', color: 'darkblue' }}
+        >
+          {module.name}
+        </NavLink>
+      ))}
     </nav>
   );
 };
