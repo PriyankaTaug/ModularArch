@@ -1,4 +1,12 @@
-const CMS = () => {
-  return <h1>CMS Module</h1>;
+const CMS: React.FC = () => {
+  return <div>Welcome to the CMS</div>;
 };
-export default CMS;
+
+export default {
+  routeProps: {
+    path: '/cms',
+    component: CMS,
+    exact: true,
+  },
+  name: 'CMS',
+};
